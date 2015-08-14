@@ -1,0 +1,26 @@
+{
+  "name": "adfero",
+  "version": "0.0.0",
+  "authors": [
+    "Ken Crocken <kcrocken@gmail.com>"
+  ],
+  "description": "time tracker",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-bootstrap": "~0.13.3",
+    "angular-resource": "~1.4.3",
+    "bootstrap": "~3.3.5",
+    "moment": "~2.10.6",
+    "angular-chart.js": "~0.7.3",
+    "Chart.js": "~1.0.2",
+    "angular-local-storage": "~0.2.2"
+  }
+}
