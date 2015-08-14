@@ -32,6 +32,26 @@ timeTracker.factory('time', function(localStorageService){
         }
     }
 
+    function getDailyTotal(timeentries){
+        var dailyTotals = [];
+        var day = null;
+        i = -1;
+        angular.forEach(timeentries, function(value,key){
+            if (moment(value["end_time"]).isSame(day, 'day')){
+                var x = moment(value["end_time"]).format("MMMM Do");
+                dailyTotals[i][x] += value["loggedTime"]["duration"][2];
+            } else {
+                var obj = {};
+                day = value["end_time"];
+                var x = moment(value["end_time"]).format("MMMM Do");
+                obj[x] = value["loggedTime"]["duration"][2];
+                dailyTotals.push(obj);
+                i++
+            }
+        });
+        return dailyTotals;
+    }
+
     return {
         persistTime: function(time) {
             Time = time;
@@ -46,6 +66,7 @@ timeTracker.factory('time', function(localStorageService){
         },
 
         getTimeDiff: getTimeDiff,
+        getDailyTotal: getDailyTotal,
         getTotalTime: getTotalTime
     }
 

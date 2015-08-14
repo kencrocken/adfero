@@ -73,18 +73,26 @@ timeTracker.controller('TimeEntry', ['$scope','time', 'localStorageService', fun
     function renderChart() {
         $scope.labels = [];
         $scope.data = [];
-        for (var i = 0; i < vm.timeentries.length; i++) {
-            var label = vm.timeentries[i]["taskDescription"];
-            var hours = moment.duration(vm.timeentries[i]["loggedTime"]["duration"][2]).asHours();
+        var label;
+        var hours=[];
+        var x = time.getDailyTotal(vm.timeentries);
+        for (var i = 0; i < x.length; i++) {
+            for (var key in x[i]) {
+                if(x[i].hasOwnProperty(key)){
+                    label = key;
+                    hours.push(moment.duration(x[i][key]).asHours());
+                }
+            }
             $scope.labels.push(label);
-            $scope.data.push(hours);
         }
+        // Push hours outside loop to prevent creating two datasets
+        $scope.data.push(hours);
     }
 
     // Display total time and chart if there is a time log
     updateTotalTime(vm.timeentries);
 
-    if(vm.timeentries.length > 0) {
+    if(vm.timeentries.length != 0) {
         renderChart();
     }
     

@@ -60,7 +60,14 @@
                 <span class="label label-primary">{{vm.totalTime.hours}} hours</span> 
                 <span class="label label-default">{{vm.totalTime.minutes}} minutes</span>
             </div>
-            <canvas id="pie" class="chart chart-pie" data="data" labels="labels" legend="true"></canvas> 
+            <canvas id="bar" class="chart chart-bar" 
+            data="data" 
+            labels="labels" 
+            options="{
+                scaleShowGridLines : false,
+                responsive: true
+            }">
+            </canvas> 
         </div>
     </div>
 
